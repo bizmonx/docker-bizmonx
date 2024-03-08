@@ -6,10 +6,11 @@
 # Start Apache in the background
 service apache2 start
 
-# Run your additional commands here
+# Start xymon
 /home/xymon/server/bin/xymon.sh start
+
+# Start http gateway
 /home/xymon/bizmonx-gateway/bin/linux-amd64/bizmonx-gateway
-# command2
 
 # Keep the container running by waiting on Apache process
 # This will keep the container alive and not exit
