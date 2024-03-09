@@ -44,3 +44,8 @@ services apache2 start
 /home/xymon/server/bin/xymon.sh start
 ```
 
+Environment Variables
+XYMON_HOST
+XYMON_PORT
+XYMON_WEB_SERVER_PORT
+XYMON_GATEWAY_SERVER_PORT

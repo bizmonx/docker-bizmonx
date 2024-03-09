@@ -32,7 +32,7 @@ RUN a2enmod rewrite && a2enmod cgi
 
 RUN sed -i '1s/^/ServerName localhost\n/' /etc/apache2/apache2.conf
 RUN sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
-RUN chown -R xymon:xymon /var/run/apache2 /var/log/apache2 /var/www/html
+RUN chown -R xymon:xymon /var/run/apache2 /var/log/apache2 /var/www/html /etc/apache2/ports.conf
 
 ADD ./scripts /home/xymon/scripts
 RUN chmod +rx /home/xymon/scripts/ -R

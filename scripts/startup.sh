@@ -2,6 +2,8 @@
 
 # Add ServerName at the top of apache2.conf
 # sed -i '1s/^/ServerName localhost\n/' /etc/apache2/apache2.conf
+port=${XYMON_WEB_SERVER_PORT:-8080}
+sed -i "s/Listen 80.*$/Listen $port\n" /etc/apache2/ports.conf
 
 # Start Apache in the background
 service apache2 start
