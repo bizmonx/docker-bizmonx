@@ -32,8 +32,16 @@ move while learning the language
 ## Get Started
 Get the docker image, or cook your own.
 
+linux/amd64
+
+debian 12
 ```bash 
-docker pull jeroenflvr/bizmonx:0.0.2
+docker pull jeroenflvr/bizmonx:deb12-0.1.0
+```
+
+ubi9
+```bash 
+docker pull jeroenflvr/bizmonx:ubi9-0.1.0
 ```
 
 ## Environment Variables
@@ -43,3 +51,4 @@ docker pull jeroenflvr/bizmonx:0.0.2
 | XYMON_PORT | 1984 | port xymond listens on |
 | XYMON_WEB_SERVER_PORT | 8080 | port for the apache web server |
 | XYMON_GATEWAY_SERVER_PORT | 1976 | port for the gateway server |
+| XYMON_BADGE | Xymon | the name which appears under the navigation bar on the left |

@@ -1,0 +1,7 @@
+<style>
+
+.xcolor {
+    color: &XYMWEBBACKGROUND;
+}
+
+</style>

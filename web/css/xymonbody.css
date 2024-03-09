@@ -1,0 +1,35 @@
+/* body classes definitions */
+body {
+    color: #5cd5fb;
+    background-color: #282828;
+ /*
+ color: #D8D8BF;
+ background-color: black;
+ background-repeat: repeat-y;
+ */
+}
+
+
+.green {
+ background-image: url(bkg-green.gif);
+}
+
+.yellow {
+ background-image: url(bkg-yellow.gif);
+}
+
+.red {
+ background-image: url(bkg-red.gif);
+}
+
+.purple {
+ background-image: url(bkg-purple.gif);
+}
+
+.blue {
+ background-image: url(bkg-blue.gif);
+}
+
+.clear {
+ background-image: url(bkg-clear.gif);
+}
