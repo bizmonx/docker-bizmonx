@@ -17,11 +17,18 @@ Just the start, but here are the goals:
 5. rewrite database (duckdb, tigerbeetle, ...?)
 6. rewrite charts
 7. manage hosts.cfg or replace
-...
-n. rewrite while maybe reusing bits?
+8. ...
+9. n. rewrite while maybe reusing bits?
 
 
 + already added temporary http(s) gateway (golang), to be replaced with zig (zap)
+
+## Done
+
+- dockerize xymon build
+- http(s) gateway (status + data, others are pending)
+- cleanup frontend with css, no code changes yet
+- debian and ubi (redhat) versions
 
 
 ## Why Zig, not Go/Rust?
