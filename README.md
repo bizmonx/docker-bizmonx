@@ -14,8 +14,11 @@ Just the start, but here are the goals:
 2. rewrite frontend! 
 3. rewrite clients
 4. rewrite endpoints (HTTP/2 gRPC vs REST)
-5. rewrite database (tigerbeetle?)
+5. rewrite database (duckdb, tigerbeetle, ...?)
 6. rewrite charts
+7. manage hosts.cfg or replace
+...
+n. rewrite while maybe reusing bits?
 
 
 + already added temporary http(s) gateway (golang), to be replaced with zig (zap)

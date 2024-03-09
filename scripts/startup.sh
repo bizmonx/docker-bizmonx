@@ -7,6 +7,10 @@
 service apache2 start
 
 # Start xymon
+sed -i "s/^XYMONSERVERHOSTNAME.*$/XYMONSERVERHOSTNAME=\"$(hostname)\"/"  /home/xymon/server/etc/xymonserver.cfg
+lhost="127.0.0.1    $(hostname) # bdd http://$(hostname):${XYMON_PORT}"
+sed -i "s/^127\.0\.0\.1.*/$(echo "$lhost" | sed 's/[&/\]/\\&/g')/" /home/xymon/server/etc/hosts.cfg
+
 /home/xymon/server/bin/xymon.sh start
 
 # Start http gateway

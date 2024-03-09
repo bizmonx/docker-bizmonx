@@ -21,7 +21,8 @@ FPING = xymonping
 # Username running Xymon
 XYMONUSER = xymon
 # Xymon server hostname
-XYMONHOSTNAME = 23e5f585eaf6
+XYMONHOSTNAME = localhost
+
 # Xymon server IP-address
 XYMONHOSTIP = 127.0.0.1
 # Xymon server OS
@@ -42,8 +43,15 @@ SYSTEMCARES = no
 # PCRE settings
 PCRELIBS = -lpcre
 
+# RRDtool settings
+RRDDEF = -DRRDTOOL12
+RRDLIBS = -lrrd 
+DORRD = yes
 #
 # OpenSSL settings
+SSLFLAGS = -DHAVE_OPENSSL
+SSLLIBS = -lssl -lcrypto
+DOSSL = yes
 #
 # OpenLDAP settings
 LDAPFLAGS = 
@@ -63,4 +71,3 @@ include build/Makefile.Linux
 # Add local CFLAGS etc. settings here
 
 include build/Makefile.rules
-

@@ -14,12 +14,13 @@ RUN wget https://ziglang.org/builds/zig-linux-x86_64-0.12.0-dev.3160+aa7d16aba.t
 
 RUN useradd -s /bin/bash -M xymon && mkdir /home/xymon && chown -R xymon:xymon /home/xymon
 
-RUN mkdir /home/build && wget https://kumisystems.dl.sourceforge.net/project/xymon/Xymon/4.3.30/xymon-4.3.30.tar.gz \
+RUN mkdir /home/build && cd /home/build && wget https://kumisystems.dl.sourceforge.net/project/xymon/Xymon/4.3.30/xymon-4.3.30.tar.gz \
     && tar -xvf xymon-4.3.30.tar.gz -C /home/build \
     && cd /home/build/xymon-4.3.30
 
 ADD Makefile /home/build/xymon-4.3.30/Makefile
 
+ENV LD_LIBRARY_PATH=/usr/local/lib
 
 RUN cd /home/build/xymon-4.3.30 && chmod +rx /home/xymon -R && make && make install
 
@@ -44,6 +45,7 @@ EXPOSE 1976
 
 USER xymon
 WORKDIR /home/xymon
+ENV TEST=true
 RUN git clone https://github.com/bizmonx/bizmonx-gateway.git &&\
     chmod +rx /home/xymon/bizmonx-gateway/bin/linux-amd64/bizmonx-gateway
 
