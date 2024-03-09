@@ -31,9 +31,9 @@ RUN cp /home/xymon/server/etc/xymon-apache.conf /etc/apache2/conf-available/ && 
 RUN a2enmod rewrite && a2enmod cgi
 
 RUN sed -i '1s/^/ServerName localhost\n/' /etc/apache2/apache2.conf
-RUN sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
+#RUN sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
 RUN chown -R xymon:xymon /var/run/apache2 /var/log/apache2 /var/www/html /etc/apache2/ports.conf
-
+ENV TEST=3
 ADD ./scripts /home/xymon/scripts
 RUN chmod +rx /home/xymon/scripts/ -R
 
@@ -45,7 +45,7 @@ EXPOSE 1976
 
 USER xymon
 WORKDIR /home/xymon
-ENV TEST=true
+
 RUN git clone https://github.com/bizmonx/bizmonx-gateway.git &&\
     chmod +rx /home/xymon/bizmonx-gateway/bin/linux-amd64/bizmonx-gateway
 

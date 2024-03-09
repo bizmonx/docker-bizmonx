@@ -30,22 +30,16 @@ move while learning the language
 
 
 ## Get Started
-- get the docker image, or cook your own
+Get the docker image, or cook your own.
+
 ```bash 
-docker pull jeroenflvr/bizmonx:0.0.1
-```
-- set ServerName
-- start apache
-```bash
-services apache2 start
-```
-- start xymon
-```bash
-/home/xymon/server/bin/xymon.sh start
+docker pull jeroenflvr/bizmonx:0.0.2
 ```
 
-Environment Variables
-XYMON_HOST
-XYMON_PORT
-XYMON_WEB_SERVER_PORT
-XYMON_GATEWAY_SERVER_PORT
+## Environment Variables
+| var | default value | description |
+| --- | ------------- | ----------- |
+| XYMON_HOST | localhost | hostname for xymon web server |
+| XYMON_PORT | 1984 | port xymond listens on |
+| XYMON_WEB_SERVER_PORT | 8080 | port for the apache web server |
+| XYMON_GATEWAY_SERVER_PORT | 1976 | port for the gateway server |
