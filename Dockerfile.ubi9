@@ -96,7 +96,7 @@ RUN tac /home/xymon/templates/header_add_custom_style.txt > /home/xymon/template
     done < /home/xymon/templates/reversed-header_add_custom_style.txt
 
 
-
+ENV TZ=Europe/Brussels
 CMD ["/home/xymon/scripts/startup-ubi.sh"]
 
 

@@ -77,6 +77,6 @@ RUN tac /home/xymon/templates/header_add_custom_style.txt > /home/xymon/template
         sed -i "/<link rel=\"stylesheet\" type=\"text\/css\" href=\"&XYMONBODYMENUCSS\">/a $line" /home/xymon/server/web/*header; \
     done < /home/xymon/templates/reversed-header_add_custom_style.txt
 
-
+ENV TZ=Europe/Brussels
 
 CMD ["/home/xymon/scripts/startup-deb.sh"]

@@ -43,12 +43,12 @@ linux/amd64
 
 debian 12
 ```bash 
-docker pull jeroenflvr/bizmonx:deb12-0.1.0
+docker pull jeroenflvr/bizmonx:deb12-0.1.1
 ```
 
 ubi9
 ```bash 
-docker pull jeroenflvr/bizmonx:ubi9-0.1.0
+docker pull jeroenflvr/bizmonx:ubi9-0.1.1
 ```
 
 ## Environment Variables
@@ -59,3 +59,4 @@ docker pull jeroenflvr/bizmonx:ubi9-0.1.0
 | XYMON_WEB_SERVER_PORT | 8080 | port for the apache web server |
 | XYMON_GATEWAY_SERVER_PORT | 1976 | port for the gateway server |
 | XYMON_BADGE | Xymon | the name which appears under the navigation bar on the left |
+| TZ | Europe/Brussels | timezone |
