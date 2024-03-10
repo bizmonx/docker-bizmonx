@@ -57,8 +57,10 @@ Just the start, but here are the goals:
 
 
 ## Why Zig, not Go/Rust?
-Mainly because of the same reason Modular Mojo will push java out of data: it allows a gradual 
-move while learning the language.  
+Mainly because of the same reason Modular Mojo will push java out of data: it allows for a gradual 
+move from the existing codebase to a more performant language. Here, it might not be absolute runtime performance,
+but definitely developer performance ;-).
+
 
 Would have gone with Rust for a complete re-write.
 
