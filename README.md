@@ -2,12 +2,13 @@
 
 **W I P**
 
-A xymon fork for mainly non-systems monitoring.
+A xymon fork for mainly non-systems monitoring. C -> [Zig](https://ziglang.org)
 
 ## Introduction
 
 This is a rebranded fork of [Xymon](https://xymon.sourceforge.io/). Goal is to move away from some of the things that have grown obsolete, whilst
 keeping the parts that are still very much relevant today.
+
 
 ## First, a few things about Xymon
 ### the good
@@ -27,7 +28,7 @@ keeping the parts that are still very much relevant today.
 - db backend and rrd charts
 - ...
 
-## Work in progress, the plan
+## To do, the plan
 
 Just the start, but here are the goals:
 
@@ -46,10 +47,17 @@ Just the start, but here are the goals:
 
 + already added temporary http(s) gateway (golang), to be replaced with zig (zap)
 
-## Done
+## Doing
+- finishing [ziglings](https://ziglings.org/): a practical guide to learning Zig
+- write endpoint for: 
+    - download hosts.cfg
+    - upload hosts.cfg
+    - restart xymon
+ This will serve to make this project usable while refactoring.
 
+## Done
 - dockerize xymon build
-- http(s) gateway (status + data, others are pending)
+- http(s) gateway (status + data, others are pending) -> to be replaced with zig (zap)
 - cleanup frontend with css, no code changes yet
 - debian and ubi (redhat) versions
 - rebranding with monkey patching (temporary step)
