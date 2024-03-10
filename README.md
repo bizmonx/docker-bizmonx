@@ -6,6 +6,29 @@ A xymon fork for mainly non-systems monitoring.
 
 ## Introduction
 
+This is a rebranded fork of [Xymon](https://xymon.sourceforge.io/). Goal is to move away from some of the things that have grown obsolete, whilst
+keeping the parts that are still very much relevant today.
+
+## First, a few things about Xymon
+### the good
+
+- lightweight
+- extremely flexible and pluggable
+- fast
+- extensible
+- status inheritance and propagation across the configuration tree
+- written in C
+- ...
+
+### the not so good
+- frontend style and design
+- management of the hosts and groups
+- authentication and authorization
+- db backend and rrd charts
+- ...
+
+## Work in progress, the plan
+
 Just the start, but here are the goals:
 
 -> gradually rewrite using ziglang
@@ -29,12 +52,18 @@ Just the start, but here are the goals:
 - http(s) gateway (status + data, others are pending)
 - cleanup frontend with css, no code changes yet
 - debian and ubi (redhat) versions
+- rebranding with monkey patching (temporary step)
+- polished icons (temporary)
 
 
 ## Why Zig, not Go/Rust?
-mainly because of the same reason Modular Mojo will push java out of data, it allows a gradual 
-move while learning the language
+Mainly because of the same reason Modular Mojo will push java out of data: it allows a gradual 
+move while learning the language.  
 
+Would have gone with Rust for a complete re-write.
+
+Love Go for its simplicity.  The channels are already there.  Makes sense and with htmx, would have been 
+an excellent choice.  However, Zig allows me to migrate and rework parts and even just reuse really easily.
 
 ## Get Started
 Get the docker image, or cook your own.
@@ -43,12 +72,12 @@ linux/amd64
 
 debian 12
 ```bash 
-docker pull jeroenflvr/bizmonx:deb12-0.1.1
+docker pull jeroenflvr/bizmonx:deb12-0.1.3
 ```
 
 ubi9
 ```bash 
-docker pull jeroenflvr/bizmonx:ubi9-0.1.1
+docker pull jeroenflvr/bizmonx:ubi9-0.1.3
 ```
 
 ## Environment Variables
