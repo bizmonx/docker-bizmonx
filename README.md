@@ -48,6 +48,7 @@ Just the start, but here are the goals:
 + already added temporary http(s) gateway (golang), to be replaced with zig (zap)
 
 ## Doing
+- migrate Xymon build to zig and push all monkey patching from dockerfile/startup script to build
 - finishing [ziglings](https://ziglings.org/): a practical guide to learning Zig
 - write endpoint for: 
     - download hosts.cfg
