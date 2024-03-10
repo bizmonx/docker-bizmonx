@@ -2,7 +2,9 @@
 
 # Add ServerName at the top of apache2.conf
 hname=${XYMON_HTTP_HOST_NAME:-$(hostname)}
-sed -i "1s/^/ServerName $hname\n/" /etc/apache2/apache2.conf
+sed "1s/^/ServerName $hname\n/" /etc/apache2/apache2.conf > /tmp/config-file
+cat /tmp/config-file > /etc/apache2/apache2.conf
+
 
 # sed -i '1s/^/ServerName localhost\n/' /etc/apache2/apache2.conf
 port=${XYMON_WEB_SERVER_PORT:-8080}

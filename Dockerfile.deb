@@ -33,15 +33,18 @@ RUN a2enmod rewrite && a2enmod cgi
 RUN sed -i '1s/^/ServerName localhost\n/' /etc/apache2/apache2.conf
 #RUN sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
 RUN chown -R xymon:xymon /var/run/apache2 /var/log/apache2 /var/www/html /etc/apache2/ports.conf
-ENV TEST=3
+ENV TEST=4
 ADD ./scripts /home/xymon/scripts
 RUN chmod +rx /home/xymon/scripts/ -R
 
 ADD ./web/css/* /home/xymon/server/www/css/
 ADD ./web/etc/xymonmenu.cfg /home/xymon/server/etc/
 ADD ./web/*.txt /home/xymon/templates/
+COPY web/img/*.gif /home/xymon/server/www/gifs/
+#COPY web/img/*.gif /home/xymon/server/img/
 
-RUN chown xymon:xymon /home/xymon/templates -R && chmod +w /home/xymon/templates -R
+
+RUN chown xymon:xymon /home/xymon -R && chmod +w /home/xymon -R
 
 
 EXPOSE 8080
@@ -56,27 +59,51 @@ RUN git clone https://github.com/bizmonx/bizmonx-gateway.git &&\
 
 ENV XYMON_HOST=127.0.0.1 XYMON_PORT=1984
 
-# Branding
+# Xymon Branding and config
 
+# allow cgi scripts to run
 RUN echo 'XYMON_NOCSPHEADER="none"' >> /home/xymon/server/etc/xymonserver.cfg
+
+# change eighties vibe
 RUN sed -i 's/^XYMONBODYCSS=.*/XYMONBODYCSS=\"\$XYMONSERVERWWWURL\/css\/xymonbody\.css\"/'			/home/xymon/server/etc/xymonserver.cfg
 RUN sed -i 's/^XYMONBODYMENUCSS=.*/XYMONBODYMENUCSS=\"\$XYMONSERVERWWWURL\/css\/xymonmenu\-blue\.css\"/' /home/xymon/server/etc/xymonserver.cfg
 
+# size of rrd graphs
+RUN sed -i 's/^RRDHEIGHT.*/RRDHEIGHT=\"360\"/'  /home/xymon/server/etc/xymonserver.cfg
+RUN sed -i 's/^RRDWIDTH.*/RRDWIDTH=\"1152\"/'  /home/xymon/server/etc/xymonserver.cfg
+
+# status icon size
+RUN sed -i 's/^DOTHEIGHT.*/DOTHEIGHT=\"22\"/'  /home/xymon/server/etc/xymonserver.cfg
+RUN sed -i 's/^DOTWIDTH.*/DOTWIDTH=\"22\"/'  /home/xymon/server/etc/xymonserver.cfg
+
+# we're doing html5
 RUN find /home/xymon/server/web -type f -name '*header' -exec \
     sed -i 's/<!DOCTYPE HTML PUBLIC "-\/\/W3C\/\/DTD HTML 4.0\/\/EN">/<!DOCTYPE html>/' {} \;
 
+# remove html cookie management
 RUN find /home/xymon/server/web -type f -name '*header' -exec sed -i '/Set-Cookie/d' {} \;
 
+# change header line font
+RUN find /home/xymon/server/web -type f -name '*header' -exec sed -i 's/Arial/Times New Roman/' {} \;
+
+# add bootstrap magic
 RUN tac /home/xymon/templates/header_add_bs.txt > /home/xymon/templates/reversed-header_add_bs.txt && \
      while read -r line; do \
         sed -i "/<\!-- Styles for the Xymon body  -->/i $line" /home/xymon/server/web/*header; \
     done < /home/xymon/templates/reversed-header_add_bs.txt
 
+# add our own css
 RUN tac /home/xymon/templates/header_add_custom_style.txt > /home/xymon/templates/reversed-header_add_custom_style.txt && \
     while read -r line; do \
         sed -i "/<link rel=\"stylesheet\" type=\"text\/css\" href=\"&XYMONBODYMENUCSS\">/a $line" /home/xymon/server/web/*header; \
     done < /home/xymon/templates/reversed-header_add_custom_style.txt
 
+# inject some javascript to manage various stuff, ie add bootstrap button classes to input submit
+RUN for file in /home/xymon/server/web/*footer; do \
+        perl -i -pe 'BEGIN { $content = `cat /home/xymon/templates/footer_add_js.txt`; } s|</BODY>|${content}</BODY>|' "$file"; \
+    done
+
+# set timezone
 ENV TZ=Europe/Brussels
 
 CMD ["/home/xymon/scripts/startup-deb.sh"]
